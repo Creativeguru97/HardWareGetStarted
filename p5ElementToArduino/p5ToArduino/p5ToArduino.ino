@@ -18,6 +18,8 @@ void loop() {
    led2brightness = map(incomingByte, 0, 255, 0, 255);  // map the incoming value to brightness
    } else { }
 
+   Serial.println(incomingByte);
+
    // write the input brightness value to the second LED
    analogWrite(led2Pin, led2brightness);
 }
