@@ -1,15 +1,15 @@
-const five = require("johnny-five");
+const {Board, Led} = require("johnny-five");
+const board = new Board();
 
-var board = new five.Board();
+board.on("ready", () => {
+  const led = new Led(11);
 
-board.on("ready", function() {
+  // This will grant access to the led instance
+  // from within the REPL that's created when
+  // running this program.
+  board.repl.inject({
+    led
+  });
 
-  // Create a standard `led` component instance
-  var led = new five.Led(13);
-
-  // "blink" the led in 500ms
-  // on-off phase periods
-  led.blink(500);
+  led.pulse();
 });
-
-console.log("It worked!!!");
